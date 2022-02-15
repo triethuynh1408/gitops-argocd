@@ -6,8 +6,8 @@ replicaCount: 1
 
 image:
   pullPolicy: IfNotPresent
-  repository: https://hub.kubeapps.com/charts/slamdev/nginx
-  version: 1.19.10
+  repository: nginx 
+  version: 1.19
 
 imagePullSecrets: []
 nameOverride: ""
