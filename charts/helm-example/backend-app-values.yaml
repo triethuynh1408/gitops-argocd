@@ -7,7 +7,7 @@ replicaCount: 1
 image:
   pullPolicy: IfNotPresent
   repository: nginx 
-  version: 1.19
+  version: 1.21.6-alpine
 
 imagePullSecrets: []
 nameOverride: ""
