@@ -6,8 +6,8 @@ replicaCount: 1
 
 image:
   pullPolicy: IfNotPresent
-  repository: busybox
-  version: 1.34.1
+  repository: httpd
+  version: 2.4-alpine
 
 imagePullSecrets: []
 nameOverride: ""
