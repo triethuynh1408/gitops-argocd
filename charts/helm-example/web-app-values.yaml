@@ -2,13 +2,6 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-replicaCount: 1
-
-image:
-  pullPolicy: IfNotPresent
-  repository: httpd
-  version: 2.4-alpine
-
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
@@ -18,7 +11,7 @@ serviceAccount:
   create: false
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name:
+  name: ""
 
 podSecurityContext: {}
   # fsGroup: 2000
@@ -30,38 +23,76 @@ securityContext: {}
   # readOnlyRootFilesystem: true
   # runAsNonRoot: true
   # runAsUser: 1000
-
-service:
-  type: ClusterIP
-  port: 80
-
-ingress:
-  enabled: false
-  annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths: []
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
-
 resources: {}
-  # We usually recommend not to specify default resources and to leave this as a conscious
-  # choice for the user. This also increases chances charts run on environments with little
-  # resources, such as Minikube. If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    # limits:
+    #   cpu: 100m
+    #   memory: 128Mi
+    # requests:
+    #   cpu: 100m
+    #   memory: 128Mi
 
-nodeSelector: {}
+applications:
+  - name: web-1
+    image:
+      pullPolicy: IfNotPresent
+      repository: httpd
+      version: 2.4-alpine
+    service:
+      type: ClusterIP
+      port: 80
 
-tolerations: []
+    ingress:
+      enabled: false
+      annotations: {}
+        # kubernetes.io/ingress.class: nginx
+        # kubernetes.io/tls-acme: "true"
+      hosts:
+        - host: chart-web-1.local
+          paths: []
+      tls: []
+      #  - secretName: chart-example-tls
+      #    hosts:
+      #      - chart-example.local
 
-affinity: {}
+    resources: {}
+    
+    nodeSelector: {}
+
+    tolerations: []
+
+    affinity: {}
+
+  
+  - name: web-2
+    image:
+      pullPolicy: IfNotPresent
+      repository: httpd
+      version: 2
+    service:
+      type: ClusterIP
+      port: 80
+
+    ingress:
+      enabled: false
+      annotations: {}
+        # kubernetes.io/ingress.class: nginx
+        # kubernetes.io/tls-acme: "true"
+      hosts:
+        - host: chart-web-2.local
+          paths: []
+      tls: []
+      #  - secretName: chart-example-tls
+      #    hosts:
+      #      - chart-example.local
+
+    resources: {}
+    
+    nodeSelector: {}
+
+    tolerations: []
+
+    affinity: {}
