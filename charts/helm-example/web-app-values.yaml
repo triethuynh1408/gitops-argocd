@@ -37,6 +37,7 @@ resources: {}
 
 applications:
   - name: web-1
+    replicaCount: 1
     image:
       pullPolicy: IfNotPresent
       repository: httpd
@@ -58,16 +59,10 @@ applications:
       #    hosts:
       #      - chart-example.local
 
-    resources: {}
-    
-    nodeSelector: {}
-
-    tolerations: []
-
-    affinity: {}
 
   
   - name: web-2
+    replicaCount: 2
     image:
       pullPolicy: IfNotPresent
       repository: httpd
@@ -88,11 +83,3 @@ applications:
       #  - secretName: chart-example-tls
       #    hosts:
       #      - chart-example.local
-
-    resources: {}
-    
-    nodeSelector: {}
-
-    tolerations: []
-
-    affinity: {}
